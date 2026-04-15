@@ -1,6 +1,11 @@
-import { Button, Circle, Flex, List, Text } from "@chakra-ui/react";
+"use client";
 
-const projects: Array<{ label: string; color: string }> = [
+import { Button, Circle, Flex, List, Text } from "@chakra-ui/react";
+import { useRouter } from "next/navigation";
+
+type ProjectLabels = "Work" | "Personal" | "Travel";
+
+const projects: Array<{ label: ProjectLabels; color: string }> = [
 	{
 		label: "Work",
 		color: "#3e6374",
@@ -16,6 +21,7 @@ const projects: Array<{ label: string; color: string }> = [
 ];
 
 const ProjectList = () => {
+	const router = useRouter();
 	return (
 		<Flex
 			direction={"column"}
@@ -24,7 +30,7 @@ const ProjectList = () => {
 			justifyContent="center"
 			borderRadius="10px"
 			transition="transform 0.5s ease-in"
-            fontFamily={"system-ui"}
+			fontFamily={"system-ui"}
 		>
 			<Text
 				textTransform={"uppercase"}
@@ -47,6 +53,10 @@ const ProjectList = () => {
 							color: "#3e6374",
 							cursor: "pointer",
 						}}
+						onClick={() =>
+							router.push(`/projects/${project.label.toLowerCase()}`)
+						}
+						listStyleType={"none"}
 					>
 						<Flex alignItems={"center"} gap={"10px"}>
 							<Circle size="10px" bg={project.color} />
@@ -57,7 +67,12 @@ const ProjectList = () => {
 					</List.Item>
 				))}
 			</List.Root>
-			<Button bgColor={"#3c6171"} color="#fff" borderRadius={"20px"} mt={"20px"}>
+			<Button
+				bgColor={"#3c6171"}
+				color="#fff"
+				borderRadius={"20px"}
+				mt={"20px"}
+			>
 				<span>+</span>
 				New Project
 			</Button>

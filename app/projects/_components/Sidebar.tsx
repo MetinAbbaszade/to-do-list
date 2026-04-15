@@ -51,7 +51,7 @@ const subMenuItem: Record<SubMenuLabel, ReactElement> = {
 };
 
 const Sidebar = () => {
-	const [activeTab, setActiveTab] = useState<SubMenuLabel | null>(null);
+	const [activeTab, setActiveTab] = useState<SubMenuLabel | null>("Projects");
 
 	return (
 		<VStack alignItems={"flex-start"} gap="5px" h="full">
@@ -78,7 +78,7 @@ const Sidebar = () => {
 					</Text>
 					<Text
 						textTransform={"uppercase"}
-						fontSize={"0.8rem"}
+						fontSize={"0.6rem"}
 						letterSpacing={"3px"}
 					>
 						Digital Sanctuary
